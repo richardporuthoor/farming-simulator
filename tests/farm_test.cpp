@@ -55,3 +55,31 @@ TEST_CASE( "it allows us to plant a carrot" ) {
   farm.plant(0, 1, &carrot);
   REQUIRE( farm.get_symbol(0, 1) == "v" );
 }
+
+TEST_CASE( "tests if carrot matures" ) {
+  Player player;
+  Farm farm(1, 2, &player);
+  Carrot carrot;
+  farm.plant(0, 1, &carrot);
+  farm.end_day();
+  REQUIRE( farm.get_symbol(0, 1) == "V" );
+}
+
+TEST_CASE( "checks if able to harvest if not mature" ) {
+  Player player;
+  Farm farm(1, 2, &player);
+  Carrot carrot;
+  farm.plant(0, 1, &carrot);
+  farm.harvest(0,1);
+  REQUIRE( farm.get_symbol(0, 1) == "v" );
+}
+
+TEST_CASE( "checks if able to harvest if mature" ) {
+  Player player;
+  Farm farm(1, 2, &player);
+  Carrot* carrot = new Carrot();
+  farm.plant(0, 1, carrot);
+  farm.end_day();
+  farm.harvest(0,1);
+  REQUIRE( farm.get_symbol(0, 1) == "." );
+}

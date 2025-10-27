@@ -1,5 +1,6 @@
 #include "player.hpp"
 
+
 int Player::row() {
   return current_row;
 }

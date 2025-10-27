@@ -12,5 +12,4 @@ class Player {
     void move_down();
     void move_up();
     void move_left();
-
 };

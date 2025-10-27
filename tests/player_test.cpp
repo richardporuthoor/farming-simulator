@@ -24,3 +24,5 @@ TEST_CASE( "it moves the player down" ) {
   REQUIRE( player.row() == 1 );
   REQUIRE( player.column() == 0 );
 }
+
+

@@ -32,9 +32,12 @@ std::string Farm::get_symbol(int row, int column) {
 }
 
 void Farm::plant(int row, int column, Plot *plot) {
-  Plot *current_plot = plots.at(row).at(column);
-  plots.at(row).at(column) = plot;
-  delete current_plot;
+  Plot* current_plot = plots.at(row).at(column);
+  std::string plot_char = current_plot->symbol();
+  if (plot_char == ".") {
+    plots.at(row).at(column) = plot;
+    delete current_plot;
+  }
 }
 
 void Farm::end_day() {
@@ -42,5 +45,12 @@ void Farm::end_day() {
     for(int j = 0; j < columns; j++) {
       plots.at(i).at(j)->end_day();
     }
+  }
+}
+
+void Farm::harvest(int row, int column) {
+  if (plots.at(row).at(column)->getAge() > 0) {
+    delete plots.at(row).at(column);
+    plots.at(row).at(column) = new Soil();
   }
 }

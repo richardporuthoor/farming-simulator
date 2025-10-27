@@ -7,3 +7,8 @@ std::string Soil::symbol() {
 void Soil::end_day() {
   // no-op
 }
+
+int Soil::getAge() {
+  // no-op
+  return 0;
+}
