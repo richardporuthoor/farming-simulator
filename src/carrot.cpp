@@ -2,14 +2,12 @@
 
 #include "carrot.hpp"
 
-std::string Carrot::symbol() {
-  if(age == 0) {
-    return "v";
-  } else if (age == 1) {
-    return "V";
-  } else {
-    return "W";
-  }
+char Carrot::symbol() {
+  if(age == 0)
+    return '_';
+  if (age == 1)
+    return ',';
+  return 'V';
 }
 
 void Carrot::end_day() {
@@ -18,4 +16,8 @@ void Carrot::end_day() {
 
 int Carrot::getAge() {
   return age;
+}
+
+int Carrot::getRipe() {
+  return ripe;
 }

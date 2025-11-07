@@ -23,9 +23,9 @@ int Farm::number_of_columns() {
   return columns;
 }
 
-std::string Farm::get_symbol(int row, int column) {
+char Farm::get_symbol(int row, int column) {
   if(player->row() == row && player->column() == column) {
-    return "@";
+    return '@';
   } else {
     return plots.at(row).at(column)->symbol();
   }
@@ -33,8 +33,8 @@ std::string Farm::get_symbol(int row, int column) {
 
 void Farm::plant(int row, int column, Plot *plot) {
   Plot* current_plot = plots.at(row).at(column);
-  std::string plot_char = current_plot->symbol();
-  if (plot_char == ".") {
+  char plot_char = current_plot->symbol();
+  if (plot_char == '.') {
     plots.at(row).at(column) = plot;
     delete current_plot;
   }
@@ -49,7 +49,7 @@ void Farm::end_day() {
 }
 
 void Farm::harvest(int row, int column) {
-  if (plots.at(row).at(column)->getAge() > 0) {
+  if (plots.at(row).at(column)->getAge() >= plots.at(row).at(column)->getRipe()) {
     delete plots.at(row).at(column);
     plots.at(row).at(column) = new Soil();
   }

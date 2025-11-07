@@ -6,7 +6,8 @@
 
 class Soil : public Plot {
   public:
-    std::string symbol() override;
+    char symbol() override;
     void end_day() override;
     int getAge() override;
+    int getRipe() override;
 };

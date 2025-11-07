@@ -1,7 +1,7 @@
 #include "soil.hpp"
 
-std::string Soil::symbol() {
-  return ".";
+char Soil::symbol() {
+  return '.';
 }
 
 void Soil::end_day() {
@@ -9,6 +9,11 @@ void Soil::end_day() {
 }
 
 int Soil::getAge() {
+  // no-op
+  return 0;
+}
+
+int Soil::getRipe() {
   // no-op
   return 0;
 }

@@ -7,9 +7,11 @@
 class Carrot : public Plot {
   private:
     int age = 0;
+    int ripe = 2;
 
   public:
     int getAge() override;
-    std::string symbol() override;
+    int getRipe() override;
+    char symbol() override;
     void end_day() override;
 };

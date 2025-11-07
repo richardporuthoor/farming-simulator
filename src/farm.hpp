@@ -17,7 +17,8 @@ class Farm {
     Farm(int rows, int columns, Player *player);
     int number_of_rows();
     int number_of_columns();
-    std::string get_symbol(int row, int column);
+
+    char get_symbol(int row, int column);
     void plant(int row, int column, Plot *plot);
     void harvest(int row, int column);
     void end_day();
