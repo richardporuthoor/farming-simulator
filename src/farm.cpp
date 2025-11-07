@@ -25,7 +25,7 @@ int Farm::number_of_columns() {
 
 char Farm::get_symbol(int row, int column) {
   if(player->row() == row && player->column() == column) {
-    return '@';
+    return '&';
   } else {
     return plots.at(row).at(column)->symbol();
   }

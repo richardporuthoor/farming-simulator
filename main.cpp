@@ -4,7 +4,11 @@
 #include "src/farm.hpp"
 #include "src/farm_printer.hpp"
 #include "src/carrot.hpp"
+#include "src/spinach.h"
 #include "src/ansi_clear.hpp"
+#include "src/lettuce.h"
+#include "src/sprout.h"
+#include "src/beet.h"
 
 int main() {
   Player player;
@@ -30,9 +34,21 @@ int main() {
       player.move_up();
     } else if(player_input == "a" && (player.column() - 1) >= 0 ) {
       player.move_left();
-    } else if(player_input == "c") {
+    } else if(player_input == "z") {
       Carrot *carrot = new Carrot();
       farm.plant(player.row(), player.column(), carrot);
+    } else if(player_input == "x") {
+      Spinach* spinach = new Spinach();
+      farm.plant(player.row(), player.column(), spinach);
+    } else if(player_input == "c") {
+      Lettuce* lettuce = new Lettuce();
+      farm.plant(player.row(), player.column(), lettuce);
+    } else if(player_input == "v") {
+      Beet* beet = new Beet();
+      farm.plant(player.row(), player.column(), beet);
+    } else if(player_input == "b") {
+      Sprout* sprout = new Sprout();
+      farm.plant(player.row(), player.column(), sprout);
     } else if(player_input == "e") {
       farm.end_day();
       day_counter++;

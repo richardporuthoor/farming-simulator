@@ -6,12 +6,27 @@ FarmPrinter::FarmPrinter(Farm *farm) : farm(farm) {}
 
 std::string colorize(char c) {
   switch (c) {
-    case '.': return "\033[38;5;130m.\033[0m";   // darker brown soil
-    case '_': return "\033[38;5;137m_\033[0m";   // light brown tilled soil
-    case ',': return "\033[38;5;46m,\033[0m";   // bright green comma (seedling)
-    case 'v': return "\033[38;5;34mv\033[0m";    // leafy green young plant
-    case 'V': return "\033[38;5;208mV\033[0m";  // bright orange mature carrot
-    default:  return std::string(1, c);          // default color
+    // soil
+    case '.': return "\033[38;5;130m.\033[0m";
+    case '~': return "\033[38;5;137m~\033[0m";
+    // carrot
+    case 'v': return "\033[38;5;46mv\033[0m";
+    case 'V': return "\033[38;5;208mV\033[0m";
+    // beet
+    case 'w': return "\033[38;5;46mw\033[0m";
+    case 'W': return "\033[38;5;125mW\033[0m";
+    // brussel sprout
+    case 'q': return "\033[38;5;46mq\033[0m";
+    case 'Q': return "\033[38;5;70mQ\033[0m";
+    // lettuce
+    case 'd': return "\033[38;5;46md\033[0m";
+    case 'D': return "\033[38;5;34mD\033[0m";
+    // spinach
+    case 'u': return "\033[38;5;46mu\033[0m";
+    case 'U': return "\033[38;5;22mU\033[0m";
+    // player
+    case '&': return "\033[38;5;220m&\033[0m";
+    default:  return std::string(1, c);
   }
 }
 
@@ -27,13 +42,14 @@ std::string FarmPrinter::pp() {
 
   output += "\nWelcome to the Farming Simulator Program!\n";
   output += "Use WASD to move\n";
-  output += "Player is '@'\n";
-  output += "Carrots are 'v' (seedlings)\n";
-  output += "Mature Carrots are 'V' (mature)\n";
-  output += "Press C to plant a carrot\n";
-  output += "Press H to harvest a mature carrot\n";
+  output += "Press Z to plant a carrot\n";
+  output += "Press X to plant spinach\n";
+  output += "Press C to plant lettuce\n";
+  output += "Press V to plant beets\n";
+  output += "Press B to plant brussel sprouts\n";
+  output += "Press H to harvest a mature plant\n";
   output += "Press E to end day\n";
-  output += "Press q to quit the game\n\n";
+  output += "Press Q to quit the game\n\n";
 
   return output;
 }

@@ -4,9 +4,9 @@
 
 char Carrot::symbol() {
   if(age == 0)
-    return '_';
+    return '~';
   if (age == 1)
-    return ',';
+    return 'v';
   return 'V';
 }
 
