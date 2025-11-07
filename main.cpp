@@ -54,6 +54,8 @@ int main() {
       day_counter++;
     } else if(player_input == "h") {
       farm.harvest(player.row(), player.column());
+    } else if(player_input == "r") {
+      farm.water(player.row(), player.column());
     }
   }
 }

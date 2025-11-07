@@ -10,4 +10,5 @@ class Soil : public Plot {
     void end_day() override;
     int getAge() override;
     int getRipe() override;
+    void water() override;
 };

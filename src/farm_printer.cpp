@@ -48,6 +48,7 @@ std::string FarmPrinter::pp() {
   output += "Press V to plant beets\n";
   output += "Press B to plant brussel sprouts\n";
   output += "Press H to harvest a mature plant\n";
+  output += "Press R to water a plant\n";
   output += "Press E to end day\n";
   output += "Press Q to quit the game\n\n";
 

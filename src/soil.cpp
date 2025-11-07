@@ -17,3 +17,7 @@ int Soil::getRipe() {
   // no-op
   return 0;
 }
+
+void Soil::water() {
+  // no-op
+}

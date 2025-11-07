@@ -6,6 +6,9 @@
 
 #include "sprout.h"
 
+#include <iostream>
+#include <ostream>
+
 char Sprout::symbol() {
     if(age < 5)
         return '~';
@@ -15,7 +18,10 @@ char Sprout::symbol() {
 }
 
 void Sprout::end_day() {
-    age += 1;
+    if (watered == 1)
+        age += 2;
+    else
+        age += 1;
 }
 
 int Sprout::getAge() {
@@ -24,4 +30,8 @@ int Sprout::getAge() {
 
 int Sprout::getRipe() {
     return ripe;
+}
+
+void Sprout::water() {
+    watered += 1;
 }

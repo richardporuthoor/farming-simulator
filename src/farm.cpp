@@ -54,3 +54,7 @@ void Farm::harvest(int row, int column) {
     plots.at(row).at(column) = new Soil();
   }
 }
+
+void Farm::water(int row, int column) {
+  plots.at(row).at(column)->water();
+}

@@ -15,7 +15,10 @@ char Lettuce::symbol() {
 }
 
 void Lettuce::end_day() {
-    age += 1;
+    if (watered == 1)
+        age += 2;
+    else
+        age += 1;
 }
 
 int Lettuce::getAge() {
@@ -24,4 +27,8 @@ int Lettuce::getAge() {
 
 int Lettuce::getRipe() {
     return ripe;
+}
+
+void Lettuce::water() {
+    watered += 1;
 }

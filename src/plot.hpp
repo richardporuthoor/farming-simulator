@@ -8,4 +8,5 @@ class Plot {
     virtual void end_day() = 0;
     virtual int getAge() = 0;
     virtual int getRipe() = 0;
+    virtual void water() = 0;
 };

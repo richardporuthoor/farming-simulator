@@ -15,7 +15,10 @@ char Spinach::symbol() {
 }
 
 void Spinach::end_day() {
-    age += 1;
+    if (watered == 1)
+        age += 2;
+    else
+        age += 1;
 }
 
 int Spinach::getAge() {
@@ -24,4 +27,8 @@ int Spinach::getAge() {
 
 int Spinach::getRipe() {
     return ripe;
+}
+
+void Spinach::water() {
+    watered += 1;
 }

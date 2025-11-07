@@ -15,7 +15,10 @@ char Beet::symbol() {
 }
 
 void Beet::end_day() {
-    age += 1;
+    if (watered == 1)
+        age += 2;
+    else
+        age += 1;
 }
 
 int Beet::getAge() {
@@ -24,4 +27,8 @@ int Beet::getAge() {
 
 int Beet::getRipe() {
     return ripe;
+}
+
+void Beet::water() {
+    watered += 1;
 }

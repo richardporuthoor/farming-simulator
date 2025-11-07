@@ -21,5 +21,6 @@ class Farm {
     char get_symbol(int row, int column);
     void plant(int row, int column, Plot *plot);
     void harvest(int row, int column);
+    void water(int row, int column);
     void end_day();
 };
