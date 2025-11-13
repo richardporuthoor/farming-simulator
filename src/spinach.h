@@ -15,7 +15,7 @@ class Spinach : public Plot {
 private:
     int age = 0;
     int ripe = 5;
-    int watered = 0;
+    bool watered = false;
 
 public:
     int getAge() override;

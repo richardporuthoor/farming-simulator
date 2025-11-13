@@ -8,7 +8,7 @@ class Carrot : public Plot {
   private:
     int age = 0;
     int ripe = 2;
-  int watered = 0;
+    bool watered = false;
 
   public:
     int getAge() override;

@@ -14,7 +14,7 @@
 class Sprout : public Plot {
 private:
     int age = 0;
-    int watered = 0;
+    bool watered = false;
     int ripe = 10;
 
 public:
