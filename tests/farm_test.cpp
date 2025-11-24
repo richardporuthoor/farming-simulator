@@ -1,85 +1,54 @@
-// #include <catch2/catch_test_macros.hpp>
-// #include <catch2/benchmark/catch_benchmark.hpp>
-// #include <catch2/benchmark/catch_constructor.hpp>
-// #include <catch2/generators/catch_generators_range.hpp>
+#include <catch2/catch_test_macros.hpp>
+#include "../src/farm.hpp"
+#include "../src/soil.hpp"
+#include "../src/carrot.hpp"
+#include "../src/player.hpp"
 
-// #include "../src/player.hpp"
-// #include "../src/farm.hpp"
-// #include "../src/carrot.hpp"
+TEST_CASE("Farm planting works only on soil") {
+    Player p;
+    Farm f(3, 3, &p);
 
-// TEST_CASE( "it can be initialized with a single plot" ) {
-//   Player player;
-//   Farm farm(1, 1, &player);
-//   REQUIRE( farm.number_of_rows() == 1 );
-//   REQUIRE( farm.number_of_columns() == 1 );
-// }
+    REQUIRE(f.get_symbol(0,0) == '.');
 
-// TEST_CASE( "it can be initialized as a 1x2 farm" ) {
-//   Player player;
-//   Farm farm(1, 2, &player);
-//   REQUIRE( farm.number_of_rows() == 1 );
-//   REQUIRE( farm.number_of_columns() == 2 );
-// }
+    f.plant(0, 0, new Carrot());
+    REQUIRE(f.get_symbol(0,0) == 'V' || f.get_symbol(0,0) == '~' || f.get_symbol(0,0) == 'v');
+}
 
-// TEST_CASE( "it can be initialized as a 2x1 farm" ) {
-//   Player player;
-//   Farm farm(2, 1, &player);
-//   REQUIRE( farm.number_of_rows() == 2 );
-//   REQUIRE( farm.number_of_columns() == 1 );
-// }
+TEST_CASE("Farm end_day updates crops") {
+    Player p;
+    Farm f(1, 1, &p);
 
-// TEST_CASE( "it returns the symbol for a single soil plot" ) {
-//   Player player;
-//   Farm farm(1, 1, &player);
-//   REQUIRE( farm.get_symbol(0, 0) == "@" );
-// }
+    f.plant(0, 0, new Carrot());
+    char before = f.get_symbol(0, 0);
 
-// TEST_CASE( "it returns the symbols for a 1x2 farm" ) {
-//   Player player;
-//   Farm farm(1, 2, &player);
-//   REQUIRE( farm.get_symbol(0, 0) == "@" );
-//   REQUIRE( farm.get_symbol(0, 1) == "." );
-// }
+    f.end_day();
+    char after = f.get_symbol(0, 0);
 
-// TEST_CASE( "it returns the symbols for a 2x1 farm" ) {
-//   Player player;
-//   Farm farm(2, 1, &player);
-//   REQUIRE( farm.get_symbol(0, 0) == "@" );
-//   REQUIRE( farm.get_symbol(1, 0) == "." );
-// }
+    REQUIRE(before != after);
+}
 
-// TEST_CASE( "it allows us to plant a carrot" ) {
-//   Player player;
-//   Farm farm(1, 2, &player);
-//   Carrot carrot;
-//   farm.plant(0, 1, &carrot);
-//   REQUIRE( farm.get_symbol(0, 1) == "v" );
-// }
+TEST_CASE("Farm harvest replaces with soil") {
+    Player p;
+    Farm f(1, 1, &p);
 
-// TEST_CASE( "tests if carrot matures" ) {
-//   Player player;
-//   Farm farm(1, 2, &player);
-//   Carrot carrot;
-//   farm.plant(0, 1, &carrot);
-//   farm.end_day();
-//   REQUIRE( farm.get_symbol(0, 1) == "V" );
-// }
+    Carrot* c = new Carrot();
+    f.plant(0, 0, c);
 
-// TEST_CASE( "checks if able to harvest if not mature" ) {
-//   Player player;
-//   Farm farm(1, 2, &player);
-//   Carrot carrot;
-//   farm.plant(0, 1, &carrot);
-//   farm.harvest(0,1);
-//   REQUIRE( farm.get_symbol(0, 1) == "v" );
-// }
+    // grow until ripe
+    while (c->getAge() < c->getRipe()) c->end_day();
 
-// TEST_CASE( "checks if able to harvest if mature" ) {
-//   Player player;
-//   Farm farm(1, 2, &player);
-//   Carrot* carrot = new Carrot();
-//   farm.plant(0, 1, carrot);
-//   farm.end_day();
-//   farm.harvest(0,1);
-//   REQUIRE( farm.get_symbol(0, 1) == "." );
-// }
+    f.harvest(0, 0);
+    REQUIRE(f.get_symbol(0, 0) == '.');
+}
+
+TEST_CASE("Farm watering calls plant.water()") {
+    Player p;
+    Farm f(1, 1, &p);
+
+    Carrot* c = new Carrot();
+    f.plant(0, 0, c);
+
+    f.water(0, 0);
+    c->end_day();
+    REQUIRE(c->getAge() >= 2);  // watered → +2
+}

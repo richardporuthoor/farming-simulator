@@ -1,28 +1,20 @@
-// #include <catch2/catch_test_macros.hpp>
-// #include <catch2/benchmark/catch_benchmark.hpp>
-// #include <catch2/benchmark/catch_constructor.hpp>
-// #include <catch2/generators/catch_generators_range.hpp>
+#include <catch2/catch_test_macros.hpp>
+#include "../src/player.hpp"
 
-// #include "../src/player.hpp"
+TEST_CASE("Player movement works") {
+    Player p;
+    REQUIRE(p.row() == 0);
+    REQUIRE(p.column() == 0);
 
-// TEST_CASE( "it starts the player in row zero, column zero" ) {
-//   Player player;
-//   REQUIRE( player.row() == 0 );
-//   REQUIRE( player.column() == 0 );
-// }
+    p.move_right();
+    REQUIRE(p.column() == 1);
 
-// TEST_CASE( "it moves the player to the right" ) {
-//   Player player;
-//   player.move_right();
-//   REQUIRE( player.row() == 0 );
-//   REQUIRE( player.column() == 1 );
-// }
+    p.move_left();
+    REQUIRE(p.column() == 0);
 
-// TEST_CASE( "it moves the player down" ) {
-//   Player player;
-//   player.move_down();
-//   REQUIRE( player.row() == 1 );
-//   REQUIRE( player.column() == 0 );
-// }
+    p.move_down();
+    REQUIRE(p.row() == 1);
 
-
+    p.move_up();
+    REQUIRE(p.row() == 0);
+}

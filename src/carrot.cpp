@@ -11,11 +11,10 @@ char Carrot::symbol() {
 }
 
 void Carrot::end_day() {
-    if (watered)
-        age += 2;
-    else
-        age += 1;
-    watered = false;
+  if (watered == 1)
+    age += 2;
+  else
+    age += 1;
 }
 
 int Carrot::getAge() {
@@ -27,5 +26,5 @@ int Carrot::getRipe() {
 }
 
 void Carrot::water() {
-  watered = true;
+  watered += 1;
 }

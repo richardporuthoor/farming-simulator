@@ -1,17 +1,15 @@
-// #include <catch2/catch_test_macros.hpp>
-// #include <catch2/benchmark/catch_benchmark.hpp>
-// #include <catch2/benchmark/catch_constructor.hpp>
-// #include <catch2/generators/catch_generators_range.hpp>
+#include <catch2/catch_test_macros.hpp>
+#include "../src/soil.hpp"
 
-// #include "../src/soil.hpp"
+TEST_CASE("Soil behaves correctly") {
+    Soil s;
+    REQUIRE(s.symbol() == '.');
+    REQUIRE(s.getAge() == 0);
+    REQUIRE(s.getRipe() == 0);
 
-// TEST_CASE( "it returns a dot as its symbol" ) {
-//   Soil soil;
-//   REQUIRE( soil.symbol() == "." );
-// }
+    s.end_day();   // no-op
+    REQUIRE(s.getAge() == 0);
 
-// TEST_CASE( "end_day is a no-op" ) {
-//   Soil soil;
-//   soil.end_day();
-//   REQUIRE( soil.symbol() == "." );
-// }
+    s.water();     // no-op
+    REQUIRE(s.getAge() == 0);
+}

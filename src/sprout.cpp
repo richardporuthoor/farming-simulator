@@ -18,11 +18,10 @@ char Sprout::symbol() {
 }
 
 void Sprout::end_day() {
-    if (watered)
+    if (watered == 1)
         age += 2;
     else
         age += 1;
-    watered = false;
 }
 
 int Sprout::getAge() {
@@ -34,5 +33,5 @@ int Sprout::getRipe() {
 }
 
 void Sprout::water() {
-    watered = true;
+    watered += 1;
 }
