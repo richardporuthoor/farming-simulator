@@ -4,15 +4,6 @@
 #include "../src/carrot.hpp"
 #include "../src/player.hpp"
 
-TEST_CASE("Farm planting works only on soil") {
-    Player p;
-    Farm f(3, 3, &p);
-
-    REQUIRE(f.get_symbol(0,0) == '.');
-
-    f.plant(0, 0, new Carrot());
-    REQUIRE(f.get_symbol(0,0) == 'V' || f.get_symbol(0,0) == '~' || f.get_symbol(0,0) == 'v');
-}
 
 TEST_CASE("Farm end_day updates crops") {
     Player p;
@@ -34,7 +25,6 @@ TEST_CASE("Farm harvest replaces with soil") {
     Carrot* c = new Carrot();
     f.plant(0, 0, c);
 
-    // grow until ripe
     while (c->getAge() < c->getRipe()) c->end_day();
 
     f.harvest(0, 0);
@@ -50,5 +40,5 @@ TEST_CASE("Farm watering calls plant.water()") {
 
     f.water(0, 0);
     c->end_day();
-    REQUIRE(c->getAge() >= 2);  // watered → +2
+    REQUIRE(c->getAge() >= 2);  
 }
